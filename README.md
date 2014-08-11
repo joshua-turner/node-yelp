@@ -1,14 +1,108 @@
-node-boilerplate [![Build Status](https://travis-ci.org/Woorank/node-boilerplate.png)](https://travis-ci.org/Woorank/node-boilerplate) [![Coverage Status](https://coveralls.io/repos/Woorank/node-boilerplate/badge.png?branch=master)](https://coveralls.io/r/Woorank/node-boilerplate?branch=master) [![Dependencies Status](https://david-dm.org/Woorank/node-boilerplate.svg)](https://david-dm.org/Woorank/node-boilerplate)
-================
+Yelp  
+=================
 
-Node Boilerplate is a generic template for Node applications to remove clutter of setting up a node application environment.
 
-## Install
+Simple, promise-based, node module for interfacing with Yelp API v2.0. 
 
-Simply clone the repo and change the `origin` remote to the one of your project repository:   
-`git clone https://github.com/Woorank/node-boilerplate.git`
 
-## Test
+### How to use
 
-Test suites are built with Mocha and chai.js. To run the suite execute: `npm test`   
-This will check for code quality with jshint and run through the entire test suite.
+
+```javascript
+var yelp = require("./");
+
+
+var client = yelp.createClient({
+  oauth: {
+    "consumer_key": "xxxxxxxxxxxxxxxxxxxxxxxx",
+    "consumer_secret": "xxxxxxxxxxxxxxxxxxxxxxxx",
+    "token": "xxxxxxxxxxxxxxxxxxxxxxxx",
+    "token_secret": "xxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  
+  // Optional settings:
+  httpClient: {
+    maxSockets: 25  // ~> Default is 10
+  }
+});
+
+
+client.search({
+  terms: "Café de la presse",
+  location: "BELGIUM"
+}).then(function (data) {
+  var businesses = data.businesses;
+  var location = data.region;
+  
+  // ... 
+});
+
+
+client.business("grand-place-bruxelles-2", {
+  cc: "US"
+}).then(function (data) {
+  // ...
+});
+```
+
+
+### Error handling
+
+
+Every error that comes from the module has an `id` property attached to it:
+
+```javascript
+
+var yelp = require("./");
+
+
+client.search({
+  terms: "Café de la presse",
+  location: "BELGIUM"
+}).then(function (data) {
+  // ..
+}).catch(function (err) {
+  if (err.type === yelp.errorTypes.areaTooLarge) {
+    // ..
+  } else if (err.type === yelp.errorTypes.unavailableForLocation) {
+    // ..
+  }
+});
+```
+
+
+Types: 
+
+```javascript
+
+var types = {
+  unknown: "UNKNOWN",
+  internal: "INTERNAL_ERROR",
+  exceededRequests: "EXCEEDED_REQS",
+  missingParameter: "MISSING_PARAMETER",
+  invalidParameter: "INVALID_PARAMETER",
+  invalidSignature: "INVALID_SIGNATURE",
+  invalidCredentials: "INVALID_CREDENTIALS",
+  invalidOAuthCredentials: "INVALID_OAUTH_CREDENTIALS",
+  invalidOAuthUser: "INVALID_OAUTH_USER",
+  accountUnconfirmed: "ACCOUNT_UNCONFIRMED",
+  passwordTooLong: "PASSWORD_TOO_LONG",
+  unavailableForLocation: "UNAVAILABLE_FOR_LOCATION",
+  areaTooLarge: "AREA_TOO_LARGE",
+  multipleLocations: "MULTIPLE_LOCATIONS",
+  businessUnavailable: "BUSINESS_UNAVAILABLE",
+  unspecifiedLocation: "UNSPECIFIED_LOCATION"
+};
+
+```
+
+
+### Dependencies
+
+* bluebird: `~2.2.2`
+* request: `~2.40.0`
+
+
+### LICENSE 
+
+MIT
