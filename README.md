@@ -9,7 +9,7 @@ Simple, promise-based, node module for interfacing with Yelp API v2.0.
 
 
 ```javascript
-var yelp = require("./");
+var yelp = require("node-yelp");
 
 
 var client = yelp.createClient({
@@ -53,7 +53,7 @@ Every error that comes from the module has an `id` property attached to it:
 
 ```javascript
 
-var yelp = require("./");
+var yelp = require("node-yelp");
 
 
 client.search({
