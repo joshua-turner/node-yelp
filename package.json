@@ -1,10 +1,10 @@
 {
   "name": "node-yelp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple, promise-based, node module for interfacing with Yelp API v2.0",
   "main": "index.js",
   "scripts": {},
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "~2.2.2",
     "request": "~2.40.0"
@@ -17,7 +17,6 @@
     "yelp"
   ],
   "author": "WooRank SPRL <dev@woorank.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Woorank/node-yelp/issues"
   },
