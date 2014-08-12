@@ -66,7 +66,9 @@ Client.prototype.business = function (id, params)
     );
   }
   
-  return this.request("GET", "business/" + id, params);
+  return this.request(
+    "GET", "business/" + encodeURIComponent(id), params
+  );
 };
 
 
