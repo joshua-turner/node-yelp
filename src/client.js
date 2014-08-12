@@ -71,4 +71,11 @@ Client.prototype.business = function (id, params)
 
 
 
-module.exports = Client;
+function createClient(options)
+{
+  return new Client(options);
+}
+
+
+
+module.exports.createClient = createClient;
