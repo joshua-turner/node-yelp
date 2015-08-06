@@ -6,8 +6,9 @@
   "scripts": {},
   "license": "MIT",
   "dependencies": {
-    "bluebird": "~2.2.2",
-    "request": "~2.40.0"
+    "bluebird": "~2.9.34",
+    "lodash": "^3.10.1",
+    "request": "~2.60.0"
   },
   "repository": {
     "type": "git",
