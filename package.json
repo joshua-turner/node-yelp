@@ -1,6 +1,6 @@
 {
   "name": "node-yelp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple, promise-based, node module for interfacing with Yelp API v2.0",
   "main": "index.js",
   "scripts": {},
