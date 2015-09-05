@@ -57,7 +57,7 @@ var yelp = require("node-yelp");
 
 
 client.search({
-  terms: "Café de la presse",
+  term: "Café de la presse",
   location: "BELGIUM"
 }).then(function (data) {
   // ..
