@@ -28,7 +28,7 @@ var client = yelp.createClient({
 
 
 client.search({
-  terms: "Café de la presse",
+  term: "Café de la presse",
   location: "BELGIUM"
 }).then(function (data) {
   var businesses = data.businesses;
