@@ -56,6 +56,15 @@ Client.prototype.search = function (params)
 };
 
 
+
+Client.prototype.phoneSearch = function (params)
+{
+  params = params || {};
+
+  return this.request("GET", "phone_search", params);
+};
+
+
 Client.prototype.business = function (id, params)
 {
   params = params || {};
